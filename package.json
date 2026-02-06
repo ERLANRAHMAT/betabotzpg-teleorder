@@ -1,0 +1,33 @@
+{
+  "name": "betabotz-telegram-shop-bot",
+  "version": "1.0.0",
+  "description": "Telegram Shop Bot with Betabotz Paygate Integration",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "shop",
+    "betabotz",
+    "paygate"
+  ],
+  "author": "Betabotz",
+  "license": "ISC",
+  "dependencies": {
+    "betabotz-paygate": "^1.0.1",
+    "chokidar": "^5.0.0",
+    "cli-color": "^2.0.4",
+    "figlet": "^1.7.0",
+    "fs": "^0.0.1-security",
+    "moment-timezone": "^0.5.45",
+    "mongoose": "^8.6.3",
+    "path": "^0.12.7",
+    "telegraf": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  }
+}
