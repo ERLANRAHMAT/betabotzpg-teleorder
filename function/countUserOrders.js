@@ -13,7 +13,7 @@ async function countUserOrders(telegramId) {
 
         return count
     } catch (err) {
-        console.log(textColor.red.bold("[ INFO ]") + ` [${moment().format('HH:mm:ss')}]:` + textColor.blueBright(` Something error in file utils/countUserOrders.js  ${err.message}`));
+        console.log(textColor.red.bold("[ INFO ]") + ` [${moment().format('HH:mm:ss')}]:` + textColor.blueBright(` Something error in file function/countUserOrders.js  ${err.message}`));
     }
 }
 
