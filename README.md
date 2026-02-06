@@ -1,4 +1,4 @@
-﻿# Telegram Shop Bot (Betabotz Paygate)
+# Telegram Shop Bot (Betabotz Paygate)
 
 Source code bot Telegram untuk jualan produk digital/fisik dengan manajemen stok dan pembayaran otomatis via Betabotz Paygate.
 
@@ -40,6 +40,28 @@ Pastikan sudah terpasang:
 - Token bot Telegram dari `@BotFather`
 - API key Betabotz Paygate
 
+### ⚠️ Setup Listener Betabotz Paygate (WAJIB)
+
+**Sebelum bot dapat mendeteksi pembayaran otomatis, WAJIB setup listener terlebih dahulu:**
+
+👉 **https://web.btzpay.my.id/tutorial**
+
+**Mengapa ini penting?**
+- Tanpa listener, bot **TIDAK AKAN BISA MENDETEKSI** pembayaran yang masuk
+- Listener berfungsi sebagai webhook/callback untuk notifikasi pembayaran real-time
+- Setup ini memastikan bot langsung tahu saat user sudah membayar
+
+**Yang akan kamu dapatkan dari tutorial:**
+- Cara pasang listener/webhook Betabotz
+- Konfigurasi callback URL yang benar
+- API key yang valid
+- Testing untuk memastikan pembayaran terdeteksi
+
+**Tanpa setup ini, bot hanya bisa:**
+- ✅ Membuat invoice pembayaran
+- ❌ **TIDAK BISA** mendeteksi pembayaran otomatis
+- ❌ **TIDAK BISA** mengirim stok otomatis setelah bayar
+
 ## Instalasi Cepat
 
 1) Install dependency
@@ -53,7 +75,7 @@ npm install
 - `BOT_TOKEN` -> token bot Telegram
 - `OWNER_ID` -> ID Telegram owner
 - `DATABASE_MONGODB_URI` -> URI MongoDB
-- `btzKey` -> API key Betabotz
+- `btzKey` -> API key Betabotz (dari tutorial setup)
 - `btzTimeout` -> timeout pembayaran (ms), default `900000`
 - `btzFee` -> biaya tambahan (Rp), default `0`
 - `btzMethod` -> metode pembayaran (contoh `qrisgopay`)
@@ -95,9 +117,10 @@ npm run dev
 1. User pilih produk/varian.
 2. Bot membuat invoice pembayaran.
 3. User bayar via metode yang dipilih.
-4. Bot polling status pembayaran.
-5. Jika sukses, stok dikirim otomatis ke user.
-6. Jika expired/batal, transaksi ditutup dan stok direfund.
+4. **Listener Betabotz mendeteksi pembayaran dan memberi notifikasi ke bot.**
+5. Bot verifikasi pembayaran sukses.
+6. Stok dikirim otomatis ke user.
+7. Jika expired/batal, transaksi ditutup dan stok direfund.
 
 ## Catatan Penting Keamanan
 
@@ -115,6 +138,12 @@ npm run dev
   - ada instance bot lain yang masih jalan dengan token sama, matikan dulu proses lama.
 - Gagal konek DB:
   - pastikan `DATABASE_MONGODB_URI` valid dan IP whitelist MongoDB sesuai.
+- **Pembayaran tidak terdeteksi otomatis**:
+  - ⚠️ **Pastikan sudah setup listener di https://web.btzpay.my.id/tutorial**
+  - Cek apakah webhook/callback URL sudah terkonfigurasi dengan benar
+  - Test listener dengan melakukan pembayaran percobaan
+  - Pastikan API key masih valid
+  - Cek log error di console bot
 
 ## License
 
