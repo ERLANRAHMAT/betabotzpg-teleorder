@@ -7,7 +7,6 @@ const moment = require('moment-timezone');
 const figlet = require('figlet');
 
 const { HandleHears, HandleAction } = require('./handler');
-const { watchAllJs } = require("./hotReload");
 
 const handleHears = new HandleHears()
 const handleAction = new HandleAction()
